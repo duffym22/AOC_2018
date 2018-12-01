@@ -16,7 +16,6 @@ namespace AOC_2018
         static Stopwatch watch = new Stopwatch();
 
         static string _FILE = @"C:\Users\Matthew\source\repos\AOC_2018\Day1_Chronal_Calibration\freqValues.csv";
-
         static void Main(string[] args)
         {
             watch.Start();
