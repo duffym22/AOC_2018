@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace AOC_2018
+namespace Day_1_Chronal_Calibration
 {
     class Program
     {
