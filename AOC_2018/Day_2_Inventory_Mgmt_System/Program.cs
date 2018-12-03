@@ -20,12 +20,10 @@ namespace Day_2_Inventory_Mgmt_System
       static List<bool> countofValsBools = new List<bool> { false, false };
 
       static Dictionary<char, int> charCount = new Dictionary<char, int>();
-      static Stopwatch watch = new Stopwatch();
 
       static string _FILE = @"C:\Users\Matthew\source\repos\AOC_2018\AOC_2018\Day_2_Inventory_Mgmt_System\boxes.csv";
       static void Main(string[] args)
       {
-         watch.Start();
          using (StreamReader reader = new StreamReader(_FILE))
          {
             while (!reader.EndOfStream)
@@ -33,10 +31,6 @@ namespace Day_2_Inventory_Mgmt_System
                boxIDs.Add(reader.ReadLine());
             }
          }
-         watch.Stop();
-         Console.WriteLine(string.Format("T-READFILE: {0} ticks", watch.ElapsedTicks));
-         Console.WriteLine(string.Format("T-READFILE: {0} ms", watch.ElapsedMilliseconds));
-         watch.Restart();
 
          #region Part 1
          foreach (string item in boxIDs)
@@ -86,9 +80,6 @@ namespace Day_2_Inventory_Mgmt_System
             countofValsBools = new List<bool>() { false, false, false, false };
          }
 
-         watch.Stop();
-         Console.WriteLine(string.Format("T-COUNT: {0} ticks", watch.ElapsedTicks));
-         Console.WriteLine(string.Format("T-COUNT: {0} ms", watch.ElapsedMilliseconds));
          Console.WriteLine(string.Format("# of 2s: {0}", countOfVals[0].ToString()));
          Console.WriteLine(string.Format("# of 3s: {0}", countOfVals[1].ToString()));
 
@@ -97,7 +88,6 @@ namespace Day_2_Inventory_Mgmt_System
          #endregion
 
          #region Part 2
-         watch.Restart();
 
          int
             firstIndex = -1,
@@ -145,9 +135,6 @@ namespace Day_2_Inventory_Mgmt_System
          Console.WriteLine(string.Format("Common string: {0}", buildString));
 
          #endregion
-         watch.Stop();
-         Console.WriteLine(string.Format("T-ITERATE: {0} ticks", watch.ElapsedTicks));
-         Console.WriteLine(string.Format("T-ITERATE: {0} ms", watch.ElapsedMilliseconds));
          Console.ReadLine();
       }
    }
