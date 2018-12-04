@@ -10,6 +10,8 @@ namespace Day_3_No_Matter_How_You_Slice_It
       static List<string> lines = new List<string>();
       static List<Rectangle> rekt = new List<Rectangle>();
       static List<Rectangle> overlapRect = new List<Rectangle>();
+      static List<Rectangle> overlappingOverlap= new List<Rectangle>();
+
       static int
          largestX = 0,
          largestY = 0;
@@ -51,6 +53,7 @@ namespace Day_3_No_Matter_How_You_Slice_It
 
          Console.WriteLine("Largest X: " + largestX.ToString());
          Console.WriteLine("Largest Y: " + largestY.ToString());
+         Console.WriteLine("Total sq in: " + (largestX * largestY).ToString());
 
          for (int i = 0; i < rekt.Count; i++)
          {
@@ -65,30 +68,44 @@ namespace Day_3_No_Matter_How_You_Slice_It
             }
          }
 
-         int totalOverlap = 0;
+         ///total intersects acquired by now - some intersects will overlap with each other
+         /// Example: {X = 724 Y = 606 Width = 5 Height = 4} && {X = 724 Y = 606 Width = 9 Height = 7}
+         /// calculate total sq inches of overlap and then subtract any overlapping overlaps
+         /// 
+         /// Maybe take the larger of the two overlapping rectangles 
+         /// 
 
          for (int i = 0; i < overlapRect.Count; i++)
          {
-            for (int j = i + 1; j < overlapRect.Count; j++)
+            for (int j = i + 1; j < overlapRect.Count - 1; j++)
             {
-               int fabric;
                if (overlapRect[i].IntersectsWith(overlapRect[j]))
                {
                   Rectangle tempRect = overlapRect[i];
                   tempRect.Intersect(overlapRect[j]);
-                  fabric = tempRect.Height * tempRect.Width;
-                  totalOverlap += fabric;
+                  overlappingOverlap.Add(tempRect);
                }
-               else
-               {
-                  fabric = overlapRect[i].Height * overlapRect[i].Width;
-               }
-               Console.WriteLine(string.Format("Overlap sq in: {0}", fabric));
-
             }
          }
 
+
+         int
+            totalOverlap = 0,
+            totalOverlappingOverlap = 0;
+
+         for (int i = 0; i < overlapRect.Count; i++)
+         {
+            totalOverlap += overlapRect[i].Height * overlapRect[i].Width;
+         }
+
+         for (int i = 0; i < overlappingOverlap.Count; i++)
+         {
+            totalOverlappingOverlap += overlappingOverlap[i].Height * overlappingOverlap[i].Width;
+         }
+
+
          Console.WriteLine(string.Format("Total overlap (sq in): {0}", totalOverlap.ToString()));
+         Console.WriteLine(string.Format("Total overlap overlap (sq in): {0}", totalOverlappingOverlap.ToString()));
          Console.ReadLine();
       }
 
