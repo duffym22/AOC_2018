@@ -12,48 +12,74 @@ namespace Day_5_Alchemical_Reduction
         static int _DIFF = 32;
         static List<string> lines = new List<string>();
         static string input;
-        static string _FILE = @"C:\Users\Matthew\source\repos\AOC_2018\AOC_2018\Day_5_Alchemical_Reduction\Day5.txt";
+        static string _FILE = @"C:\Users\mduffy\source\repos\AOC_2018\AOC_2018\Day_5_Alchemical_Reduction\Day5.txt";
+        static char[] delimiter2 = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
         static void Main(string[] args)
         {
-            Read_Input();
-            bool matchesFound = true;
+            bool
+                matchesFound = true;
+
             string
                 temp = string.Empty,
+                workingString = string.Empty,
                 explodey = string.Empty;
 
-            char[]
-                workingChars = input.ToCharArray();
+            Read_Input();
 
-            while (matchesFound)
+            char[]
+                workingChars;
+
+            foreach (char thing in delimiter2)
             {
-                workingChars = Explode_Chars(workingChars, out matchesFound);
-                if (matchesFound)
+                matchesFound = true;
+                workingString = input;
+                temp = string.Empty;
+                if (workingString.Contains(thing.ToString()))
                 {
-                    foreach (char item in workingChars)
-                    {
-                        if (!item.Equals('0'))
-                        {
-                            temp += item;
-                        }
-                    }
-                    workingChars = temp.ToCharArray();
-                    temp = string.Empty;
+                    int start = workingString.Length;
+                    workingString = workingString.Replace(thing.ToString().ToLower(), "");
+                    workingString = workingString.Replace(thing.ToString().ToUpper(), "");
+                    int end = workingString.Length;
+                    Console.WriteLine(string.Format("Char: {0} | Chars removed: {1}", thing, (start - end)));
+                    workingChars = workingString.ToCharArray();
                 }
                 else
                 {
-                    break;
+                    Console.WriteLine("Char not found in string" + thing.ToString());
+                    workingChars = input.ToCharArray();
                 }
-            }
 
-            temp = string.Empty;
-            foreach (char item in workingChars)
-            {
-                temp += item;
-            }
+                while (matchesFound)
+                {
+                    workingChars = Explode_Chars(workingChars, out matchesFound);
+                    if (matchesFound)
+                    {
+                        foreach (char item in workingChars)
+                        {
+                            if (!item.Equals('0'))
+                            {
+                                temp += item;
+                            }
+                        }
+                        workingChars = temp.ToCharArray();
+                        temp = string.Empty;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
 
-            Console.WriteLine("Final string: " + temp);
-            Console.WriteLine("Items remaining: " + temp.Length);
+
+                temp = string.Empty;
+                foreach (char item in workingChars)
+                {
+                    temp += item;
+                }
+
+                Console.WriteLine(string.Format("Char: {0} | String length: {1}", thing, temp.Length));
+            }
             Console.ReadLine();
         }
 
