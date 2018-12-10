@@ -73,14 +73,6 @@ namespace Day_3_No_Matter_How_You_Slice_It
             //this will be populated with Xs where an overlap exists
             grid = new int[largestX, largestY];
 
-            //for (int i = 0; i < largestX; i++)
-            //{
-            //    for (int j = 0; j < largestY; j++)
-            //    {
-            //        grid[i, j] = string.Empty;
-            //    }
-            //}
-
             //iterate through the list of all claims
             for (int i = 1; i <= claims.Count; i++)
             {
@@ -104,18 +96,23 @@ namespace Day_3_No_Matter_How_You_Slice_It
                 //Iterate through the Y dimension (columns)
                 for (int j = 0; j < largestY; j++)
                 {
+                    //take the current value at j,k
                     int value = grid[i, j];
+                    //if the dictionary doesnt have a counter for that value
+                    //add it with a default value of 1
                     if (!gridNums.ContainsKey(value))
                     {
                         gridNums.Add(value, 1);
                     }
                     else
                     {
+                        //otherwise, increment the value already in the dictionary
                         gridNums[value] += 1;
                     }
                 }
             }
 
+            //print out the claims to the console
             for (int i = 0; i < gridNums.Keys.Count; i++)
             {
                 if(i >= 2)
@@ -141,7 +138,7 @@ namespace Day_3_No_Matter_How_You_Slice_It
                     //iterate through Y dimension (columns)
                     for (int k = tempRect.Y; k < tempRect.Bottom; k++)
                     {
-                        //if the value at position j x k is greater than one
+                        //if the value at position j,k is greater than one
                         //then there are overlaps - move onto the next one
                         if (grid[j, k] > 1)
                         {
