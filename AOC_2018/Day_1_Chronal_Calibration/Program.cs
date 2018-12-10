@@ -15,7 +15,7 @@ namespace Day_1_Chronal_Calibration
         static List<int> uniqueValue = new List<int>();
         static Stopwatch watch = new Stopwatch();
 
-        static string _FILE = @"C:\Users\Matthew\source\repos\AOC_2018\AOC_2018\Day1_Chronal_Calibration\freqValues.csv";
+        static string _FILE = @"C:\Users\Matthew\source\repos\AOC_2018\AOC_2018\Day_1_Chronal_Calibration\freqValues.csv";
         static void Main(string[] args)
         {
             watch.Start();
