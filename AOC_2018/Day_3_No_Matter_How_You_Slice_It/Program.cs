@@ -71,15 +71,15 @@ namespace Day_3_No_Matter_How_You_Slice_It
 
             //create 2D array with the largest dimensions
             //this will be populated with Xs where an overlap exists
-            grid = new string[largestX, largestY];
+            grid = new int[largestX, largestY];
 
-            for (int i = 0; i < largestX; i++)
-            {
-                for (int j = 0; j < largestY; j++)
-                {
-                    grid[i, j] = string.Empty;
-                }
-            }
+            //for (int i = 0; i < largestX; i++)
+            //{
+            //    for (int j = 0; j < largestY; j++)
+            //    {
+            //        grid[i, j] = string.Empty;
+            //    }
+            //}
 
             //iterate through the list of all claims
             for (int i = 1; i <= claims.Count; i++)
@@ -93,20 +93,7 @@ namespace Day_3_No_Matter_How_You_Slice_It
                     //iterate through Y dimension (columns)
                     for (int k = tempRect.Y; k < tempRect.Bottom; k++)
                     {
-                        //If the grid position hasn't been populated (== string.empty)
-                        //put the claim number in that position
-                        if (grid[j, k].Equals(string.Empty))
-                        {
-                            //i = claim number
-                            grid[j, k] = i.ToString();
-                        }
-                        //if the grid position has a value (a claim number)
-                        //then replace the claim number with an "X" to show that
-                        //multiple claims overlap that grid position
-                        else
-                        {
-                            grid[j, k] = "X";
-                        }
+                        grid[j, k] += 1;
                     }
                 }
             }
@@ -117,68 +104,67 @@ namespace Day_3_No_Matter_How_You_Slice_It
                 //Iterate through the Y dimension (columns)
                 for (int j = 0; j < largestY; j++)
                 {
-                    string value = grid[i, j];
-                    //if the value equals X, then its an overlap
-                    //increment the counter
-                    if (value.Equals("X"))
+                    int value = grid[i, j];
+                    if (!gridNums.ContainsKey(value))
                     {
-                        overlapClaims++;
+                        gridNums.Add(value, 1);
                     }
                     else
                     {
-                        if (grid[i, j] != string.Empty)
-                        {
-                            if (!freeClaimID.Contains(grid[i, j]))
-                            {
-                                freeClaimID.Add(grid[i, j]);
-                            }
-                        }
+                        gridNums[value] += 1;
                     }
                 }
             }
+
+            for (int i = 0; i < gridNums.Keys.Count; i++)
+            {
+                if(i >= 2)
+                {
+                    overlapClaims += gridNums[i];
+                }
+                Console.WriteLine(string.Format("{0} claims: {1}", i, gridNums[i]));
+            }
+
             Console.WriteLine("Total overlap: " + overlapClaims.ToString());
 
-
-            foreach (string item in freeClaimID)
+            bool overlapsFound = false;
+            int gridClaim = 0;
+            //iterate through the list of all claims
+            for (int i = 1; i <= claims.Count; i++)
             {
-                claimIDs.Add(int.Parse(item));
-                //rekt2.Add(claims[int.Parse(item)]);
-            }
+                //declare a rectangle object to go through all X and Y dimensions
+                Rectangle tempRect = claims[i];
 
-            claimIDs.Sort();
-            int timesThrough = 1;
-
-            while (claimIDs.Count > 1)
-            {
-                Find_Intersects();
-                Console.WriteLine("Looped: " + timesThrough.ToString());
-                Console.WriteLine("Size: " + claimIDs.Count.ToString());
-                timesThrough++;
-            }
-
-            Console.ReadLine();
-        }
-
-        static void Find_Intersects()
-        {
-            for (int i = 0; i < claimIDs.Count; i++)
-            {
-                Rectangle temp1 = claims[claimIDs[i]];
-                //only continue if this rectangle item hasn't intersected with another rectangle
-                for (int j = i + 1; j < claimIDs.Count; j++)
+                //iterate through X dimension (rows)
+                for (int j = tempRect.X; j < tempRect.Right; j++)
                 {
-                    Rectangle temp2 = claims[claimIDs[j]];
-                    //only continue if this rectangle item hasn't intersected with another rectangle
-                    if (temp1.IntersectsWith(temp2))
+                    //iterate through Y dimension (columns)
+                    for (int k = tempRect.Y; k < tempRect.Bottom; k++)
                     {
-                        claimIDs.Remove(i);
-                        claimIDs.Remove(j);
-                        break;
+                        if (grid[j, k] > 1)
+                        {
+                            overlapsFound = true;
+                            break;
+                        }
                     }
+
+                    if (overlapsFound)
+                        break;
+                }
+
+                if(!overlapsFound)
+                {
+                    gridClaim = i;
+                    break;
+                }
+                else
+                {
+                    overlapsFound = false;
                 }
             }
+            Console.WriteLine("Free claim ID: " + gridClaim.ToString());
+            Console.ReadLine();
         }
-
     }
 
 }
