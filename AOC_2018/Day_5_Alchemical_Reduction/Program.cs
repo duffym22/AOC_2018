@@ -41,7 +41,7 @@ namespace Day_5_Alchemical_Reduction
                     workingString = workingString.Replace(thing.ToString().ToLower(), "");
                     workingString = workingString.Replace(thing.ToString().ToUpper(), "");
                     int end = workingString.Length;
-                    Console.WriteLine(string.Format("Char: {0} | Chars removed: {1}", thing, (start - end)));
+                    //Console.WriteLine(string.Format("Char: {0} | Chars removed: {1}", thing, (start - end)));
                     workingChars = workingString.ToCharArray();
                 }
                 else
