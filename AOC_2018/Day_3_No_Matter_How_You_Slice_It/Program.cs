@@ -141,6 +141,8 @@ namespace Day_3_No_Matter_How_You_Slice_It
                     //iterate through Y dimension (columns)
                     for (int k = tempRect.Y; k < tempRect.Bottom; k++)
                     {
+                        //if the value at position j x k is greater than one
+                        //then there are overlaps - move onto the next one
                         if (grid[j, k] > 1)
                         {
                             overlapsFound = true;
@@ -148,10 +150,12 @@ namespace Day_3_No_Matter_How_You_Slice_It
                         }
                     }
 
+                    //move onto the next claim
                     if (overlapsFound)
                         break;
                 }
 
+                //if no overlaps were found, then we found the free claim!
                 if(!overlapsFound)
                 {
                     gridClaim = i;
@@ -159,6 +163,7 @@ namespace Day_3_No_Matter_How_You_Slice_It
                 }
                 else
                 {
+                    //if we did find overlapping claims, then reset and move onto the next claim ID
                     overlapsFound = false;
                 }
             }
