@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_1_Chronal_Calibration", "Day1_Chronal_Calibration\Day_1_Chronal_Calibration.csproj", "{1355DD3E-948F-40E9-AE6D-D4705B34A562}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_1_Chronal_Calibration", "Day_1_Chronal_Calibration\Day_1_Chronal_Calibration.csproj", "{1355DD3E-948F-40E9-AE6D-D4705B34A562}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_2_Inventory_Mgmt_System", "Day_2_Inventory_Mgmt_System\Day_2_Inventory_Mgmt_System.csproj", "{64EB221C-44F4-4FE0-B1CD-30669076B8BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_3_No_Matter_How_You_Slice_It", "Day_3_No_Matter_How_You_Slice_It\Day_3_No_Matter_How_You_Slice_It.csproj", "{F9B88B0B-B2F1-4E33-9646-FF62D94483FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_4_Repose_Record", "Day_4_Repose_Record\Day_4_Repose_Record.csproj", "{D5BA9D1F-F9A3-4B49-8A30-E02C7294A30C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_5_Alchemical_Reduction", "Day_5_Alchemical_Reduction\Day_5_Alchemical_Reduction.csproj", "{DD680AF9-6EB6-4CE5-991A-342758CB8D07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D5BA9D1F-F9A3-4B49-8A30-E02C7294A30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BA9D1F-F9A3-4B49-8A30-E02C7294A30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BA9D1F-F9A3-4B49-8A30-E02C7294A30C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD680AF9-6EB6-4CE5-991A-342758CB8D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD680AF9-6EB6-4CE5-991A-342758CB8D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD680AF9-6EB6-4CE5-991A-342758CB8D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD680AF9-6EB6-4CE5-991A-342758CB8D07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
